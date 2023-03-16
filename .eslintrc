@@ -4,7 +4,7 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
-    "project": ["tsconfig.json" /*"tsconfig.eslint.json"*/],
+    "project": ["tsconfig.json", "tsconfig.eslint.json"],
     "tsconfigRootDir": "./"
   },
   "plugins": ["@typescript-eslint"],
@@ -13,11 +13,15 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"]
     }
-  ] //,
-
-  // "rules": {
-  //   "prefer-const": 1
-  // }
+  ],
+  // ignore const pref
+  "prefer-const": [
+    "error",
+    {
+      "destructuring": "any",
+      "ignoreReadBeforeAssign": false
+    }
+  ]
 }
 
 // https://typescript-eslint.io/getting-started
