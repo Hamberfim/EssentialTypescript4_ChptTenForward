@@ -13,11 +13,11 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"]
     }
-  ],
+  ] //,
 
-  "rules": {
-    "prefer-const": 1
-  }
+  // "rules": {
+  //   "prefer-const": 1
+  // }
 }
 
 // https://typescript-eslint.io/getting-started
