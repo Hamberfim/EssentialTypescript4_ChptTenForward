@@ -1,0 +1,33 @@
+{
+  "root": true,
+  "ignorePatterns": ["node_modules", "dist"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": ["tsconfig.json" /*"tsconfig.eslint.json"*/],
+    "tsconfigRootDir": "./"
+  },
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["eslint:recommended", "plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended"]
+    }
+  ],
+
+  "rules": {
+    "prefer-const": 1
+  }
+}
+
+// https://typescript-eslint.io/getting-started
+// run in the terminal: npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
+// create a file in the root project dir: .eslintrc.cjs
+// If your project doesn't use ESM, name the file as .eslintrc.js
+// module.exports = {
+//   extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+//   parser: "@typescript-eslint/parser",
+//   plugins: ["@typescript-eslint"],
+//   root: true,
+// };
+// run in the terminal: npx eslint .

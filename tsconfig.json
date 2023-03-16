@@ -1,0 +1,25 @@
+{
+  /* bare bones tsconfig */
+  "compilerOptions": {
+    /* lang/env */
+    "target": "es2020",
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": "./src",
+
+    /* Emit */
+    "outDir": "./dist",
+    "declaration": true,
+
+    /* Type Checking */
+    "strict": true,
+    "alwaysStrict": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  },
+  "include": ["./src/**/*.*"],
+  "exclude": ["node_modules"]
+}
