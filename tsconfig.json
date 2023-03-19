@@ -15,11 +15,15 @@
     /* Type Checking */
     "strict": true,
     "alwaysStrict": true,
+    "noEmitOnError": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*.*"],
+  // point at the dir we are currently using
+  "include": ["./src/chapt11/*.*"],
   "exclude": ["node_modules"]
 }
