@@ -20,6 +20,7 @@
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true
   },
