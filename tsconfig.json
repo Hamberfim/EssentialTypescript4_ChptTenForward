@@ -25,6 +25,6 @@
     "skipLibCheck": true
   },
   // point at the dir we are currently using
-  "include": ["./src/chapt11/*.*"],
+  "include": ["./src/chapt12/*.*"],
   "exclude": ["node_modules"]
 }

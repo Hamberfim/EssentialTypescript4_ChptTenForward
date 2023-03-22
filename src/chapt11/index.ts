@@ -74,8 +74,84 @@ data.forEach((item) => {
   }
 });
 
-console.log("\n=== Abstract & Class Inheritance ===");
+console.log("\n=== Abstract, Interface Classes & Inheritance ===");
+// Interfaces are not required to define a constructor or implement methods, interfaces just define a shape
+interface LiquidProduct {
+  name: string;
+  containerType: string;
+  shelfSafe: boolean;
+  getDetails(): string;
+}
 
+// 'extends' means the class is a child and will inherit all the properties and methods from its parent,
+interface Adhesives extends LiquidProduct {
+  description: string;
+  usedfor: string;
+}
+
+// 'implements' means it's treated as the same shape but will need to implement all the properties and methods but it is not a child
+class Glue implements Adhesives {
+  name: string;
+  containerType: string;
+  shelfSafe: boolean;
+  description: string;
+  usedfor: string;
+
+  constructor(name: string, containerType: string, shelfSafe: boolean, description: string, usedfor: string) {
+    this.name = name;
+    this.containerType = containerType;
+    this.shelfSafe = shelfSafe;
+    this.description = description;
+    this.usedfor = usedfor;
+  }
+
+  getDetails() {
+    return `${this.name} is in a ${this.containerType} and is used for ${this.usedfor}. Is it shelf-Safe? ${this.shelfSafe ? "Yes" : "No"}.`;
+  }
+}
+
+class Soup implements LiquidProduct {
+  name: string;
+  containerType: string;
+  shelfSafe: boolean;
+
+  constructor(name: string, containerType: string, shelfSafe: boolean) {
+    this.name = name;
+    this.containerType = containerType;
+    this.shelfSafe = shelfSafe;
+  }
+  getDetails() {
+    return `${this.name} is in a ${this.containerType}. Is it shelf-Safe? ${this.shelfSafe ? "Yes" : "No"}.`;
+  }
+}
+
+class Milk implements LiquidProduct {
+  name: string;
+  containerType: string;
+  shelfSafe: boolean;
+
+  constructor(name: string, containerType: string, shelfSafe: boolean) {
+    this.name = name;
+    this.containerType = containerType;
+    this.shelfSafe = shelfSafe;
+  }
+  getDetails() {
+    return `${this.name} is in a ${this.containerType} and requires refrigeration. Is it shelf-Safe? ${this.shelfSafe ? "Yes" : "No"}.`;
+  }
+}
+
+let groceryData: (Soup | Milk | Glue)[] = [
+  new Soup("Tomato Soup", "14.5oz can", true),
+  new Milk("Whole Milk", "1 gallon Jug", false),
+  new Glue("Craft Glue", "Tube", true, "Non-toxic craft glue", "paper crafts"),
+];
+groceryData.forEach((item) => {
+  console.log(item.getDetails()); // uses the getDetails() specific to the class the object was instantiated from
+});
+
+console.log("\n");
+
+//  Abstract classes must define a constructor and implement methods.
 abstract class Animal {
   public readonly id: string;
   public animalType: string;
@@ -121,5 +197,47 @@ cats.forEach((cat) => {
   if (cat instanceof Cat) {
     cat.writeAnimal();
     console.log(cat.getDetails());
+  }
+});
+
+console.log("\n=== type guarding an abstract class ===");
+// type guarding an abstract class
+abstract class APerson {
+  constructor(public id: string, public name: string, public city: string) {}
+
+  getDetails(): string {
+    return `${this.name} ${this.getSpecificDetails()}`;
+  }
+
+  abstract getSpecificDetails(): string;
+}
+
+class AEmployee extends APerson {
+  constructor(public readonly id: string, public name: string, private dept: string, public city: string) {
+    super(id, name, city);
+  }
+
+  getSpecificDetails(): string {
+    return `works in ${this.dept}`;
+  }
+}
+
+class Customer {
+  constructor(public readonly id: string, public name: string, public city: string, public creditLimit: number) {}
+}
+
+let customerData: (APerson | Customer)[] = [
+  new AEmployee("ccarlucci", "Conrad Carlucci", "Sales", "Rome"),
+  new AEmployee("btomlin", "Brenda Tomlin", "Sales", "Boston"),
+  new Customer("lboswick", "Linda Boswick", "Chicago", 500),
+  new Customer("lbondu", "Larry Bondu", "Detroit", 900),
+];
+
+customerData.forEach((item) => {
+  // identify any object instantiated from a class that extends the abstract class 'APerson'
+  if (item instanceof APerson) {
+    console.log(item.getDetails());
+  } else {
+    console.log(`Customer: ${item.name}`);
   }
 });
