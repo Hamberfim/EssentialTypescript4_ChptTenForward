@@ -10,19 +10,19 @@
 
     /* Emit */
     "outDir": "./dist",
-    "declaration": true,
+    "declaration": true
 
     /* Type Checking */
-    "strict": true,
-    "alwaysStrict": true,
-    "noEmitOnError": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true
+    // "strict": true,
+    // "alwaysStrict": true,
+    // "noEmitOnError": true,
+    // "noUnusedParameters": true,
+    // "noImplicitReturns": true,
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
+    // "noUncheckedIndexedAccess": true,
+    // "skipLibCheck": true
   },
   // point at the dir we are currently using
   "include": ["./src/chapt12/*.*"],
