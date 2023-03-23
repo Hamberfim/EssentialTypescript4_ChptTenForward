@@ -10,22 +10,27 @@
 
     /* Emit */
     "outDir": "./dist",
-    "declaration": true,
+    // "declaration": true,
 
-    /* Type Checking */
+    // /* Type Checking */
     // "strict": true,
     // "alwaysStrict": true,
-    "noEmitOnError": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
+    // "noEmitOnError": true,
+    // "noUnusedParameters": true,
+    // "noImplicitReturns": true,
+    // "noImplicitAny": true,
     // "strictNullChecks": true,
     // "strictPropertyInitialization": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "downlevelIteration": true
+    // "noUncheckedIndexedAccess": true,
+    // "skipLibCheck": true,
+    // "downlevelIteration": true,
+
+    "allowJs": true,
+    // "baseUrl": ".",
+    "checkJs": true
+    // "esModuleInterop": true
   },
   // point at the dir we are currently using
-  "include": ["./src/chapt13/*.*"],
+  "include": ["./src/chapt14/*.*"],
   "exclude": ["node_modules"]
 }
