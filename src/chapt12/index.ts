@@ -132,6 +132,16 @@ class MultiDataCollection<T extends { name: string }, U> {
     });
     return results;
   }
+
+  // filter with type guard predicate
+  filter<V extends T>(predicate: (target) => target is V): V[] {
+    return this.items.filter((item) => predicate(item)) as V[];
+  }
+
+  // static method
+  static reverse<ArrayType>(items: ArrayType[]): ArrayType[] {
+    return items.reverse();
+  }
 }
 export let peopleCityData = new MultiDataCollection<Person, City>(people);
 export let collateData = peopleCityData.collate<City>(cities, "city", "name");
@@ -139,3 +149,57 @@ collateData.forEach((c) => console.log(`${c.name}, ${c.city}, pop.${c.population
 
 export let empData = peopleCityData.collate<Employee>(employees, "name", "name");
 empData.forEach((c) => console.log(`${c.name}, ${c.city}, ${c.role}`));
+
+function isProduct(target): target is Product {
+  return target instanceof Product;
+}
+
+let mixedData = new MultiDataCollection<Person | Product, unknown>([...people, ...products]);
+
+let filteredProducts = mixedData.filter<Product>(isProduct);
+filteredProducts.forEach((p) => console.log(`Product: ${p.name}, price: ${p.price}`));
+
+let reversedCities: City[] = MultiDataCollection.reverse<City>(cities);
+reversedCities.forEach((c) => console.log(`City: ${c.name}, pop.${c.population}`));
+
+// generic interface - generic type parameter
+type shapeType = { name: string };
+// specific types will be defined by the implementation/use of the interface
+interface GenericCollection<T extends shapeType> {
+  add(...newItems: T[]): void;
+  get(name: string): T;
+  count: number;
+}
+
+// extending Generic Interfaces
+interface SearchableCollection<T extends shapeType> extends GenericCollection<T> {
+  find(name: string): T | undefined;
+}
+
+interface ProductCollection extends GenericCollection<Product> {
+  sumPrices(): number;
+}
+interface PeopleCollection<T extends Product | Employee> extends GenericCollection<T> {
+  getNames(): string[];
+}
+
+// implementing generic interfaces - passing the generic type parameter
+class ArrayCollection<DataType extends shapeType> implements GenericCollection<DataType> {
+  private items: DataType[] = [];
+
+  add(...newItems): void {
+    this.items.push(...newItems);
+  }
+
+  get(name: string): DataType {
+    return this.items.find((item) => item.name === name);
+  }
+
+  get count(): number {
+    return this.items.length;
+  }
+}
+
+let PeopleCollection: GenericCollection<Person> = new ArrayCollection<Person>();
+PeopleCollection.add(new Person("Cameran Wilkerson", "New York"), new Person("Paulo SanMicah", "Bushwick"));
+console.log(`Collection size: ${PeopleCollection.count}`);
